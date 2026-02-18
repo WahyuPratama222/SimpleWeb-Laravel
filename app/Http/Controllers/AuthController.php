@@ -13,9 +13,8 @@ class AuthController extends Controller
     // 1. Get Register
     public function showRegister()
     {
-        return view ('pages.register');
+        return view ('auth.register');
     }
-
 
     // 2. Post Register
     public function register (Request $request)
@@ -37,7 +36,7 @@ class AuthController extends Controller
     // 3. Get Login
     public function showLogin()
     {
-        return view('pages.login');
+        return view('auth.login');
     }
 
     //4. Post Login
