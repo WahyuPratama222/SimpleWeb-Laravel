@@ -2,11 +2,21 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MembershipController;
 
-Route::get('/register', [AuthController::class, 'showRegister']);
-Route::post('/register', [AuthController::class, 'register']);
+// Bungkus rute Auth dalam satu controller
+Route::controller(AuthController::class)->group(function () {
+    // Register
+    Route::get('/register', 'showRegister')->name('register.show');
+    Route::post('/register', 'register')->name('register.perform');
 
-Route::get('/login', [AuthController::class, 'showLogin']);
-Route::post('/login', [AuthController::class, 'login']);
+    // Login
+    Route::get('/login', 'showLogin')->name('login.show');
+    Route::post('/login', 'login')->name('login.perform');
 
-Route::get('/logout', [AuthController::class, 'logout']);
+    // Logout
+    Route::post('/logout', 'logout')->name('logout');
+});
+
+// Membership CRUD 
+Route::resource('memberships', MembershipController::class);
