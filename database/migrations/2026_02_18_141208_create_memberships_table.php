@@ -12,12 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('memberships', function (Blueprint $table) {
-            $table->id("id_membership");
+            $table->id("id");
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->integer('duration_in_days');
-            $table->decimal('price',12, 2);
+            $table->decimal('price', 12, 2);
+            $table->string('image')->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
